@@ -4,8 +4,8 @@ import java.util.List;
 public class Board {
 
     private List<Cube> board = new ArrayList<Cube>(81);
-    List<Row> verticalRowList = new ArrayList<Row>(9);
-    List<Row> horizontalColumnList = new ArrayList<Row>(9);
+    private List<Row> verticalRowList = new ArrayList<Row>(9);
+    private List<Row> horizontalColumnList = new ArrayList<Row>(9);
 
     public Board() {
         load();
@@ -18,7 +18,7 @@ public class Board {
             for (int vertical = 0; vertical < 9; vertical++) {
                 cube = new Cube();
                 int index = ( 9 * horizontal ) + vertical;
-                cube.setValue(1 + index);
+                cube.setValue(1 + horizontal);
                 board.add(index, cube);
                 horizontalColumn.add(cube);
             }
@@ -35,19 +35,24 @@ public class Board {
         }
     }
 
-    public void dump() {
+    public String dump() {
+        StringBuilder builder = new StringBuilder();
         for (Cube cube : board) {
-            System.out.print(" " + cube.getValue() + " ");
+            builder.append(" ");
+            builder.append(cube.getValue());
+            builder.append(" ");
         }
 
         for (Row horizontalColumn : horizontalColumnList) {
-            horizontalColumn.dump();
+            builder.append(horizontalColumn.dump());
         }
 
         for (Row verticalRow : verticalRowList) {
-            verticalRow.dump();
+            builder.append(verticalRow.dump());
         }
 
+        builder.append("\n");
+        return builder.toString();
     }
 
 }

@@ -11,14 +11,15 @@ public class Cube {
         return value;
     }
 
-    public void setValue(int value) {
+    public boolean setValue(int value) {
+        if (!validate(value)) {
+            return false;
+        }
         this.value = value;
+        return true;
     }
 
     public boolean validate(int value) {
-        if (0 < value && value <= 9) {
-            return true;
-        }
-        return false;
+        return (-1 == value) || (0 < value && value <= 9);
     }
 }

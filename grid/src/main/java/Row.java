@@ -1,18 +1,24 @@
-import com.sun.javafx.binding.StringFormatter;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Row {
 
-    List<Cube> row;
+    private List<Cube> row;
 
     public Row() {
         row = new ArrayList<Cube>(9);
     }
 
-    public void addCube(int index, Cube cube) {
-        row.add(index, cube);
+    public int size() {
+        return row.size();
+    }
+
+    public boolean addCube(int index, Cube cube) {
+        if (!validate(index, cube)) {
+            return false;
+        }
+        row.add(index - 1, cube);
+        return true;
     }
 
     public Row(List<Cube> cubeList) {
@@ -27,11 +33,16 @@ public class Row {
         return values;
     }
 
-    public void dump() {
-        System.out.println("");
+    private boolean validate(int index, Cube cube) {
+        return (cube != null) && (index == (1 + row.size())) && 0 < index && index <= 9;
+    }
+
+    public String dump() {
+        StringBuilder builder = new StringBuilder();
         for (Cube cube : row) {
-            System.out.print(String.format(" (%02d) ", cube.getValue()));
+            builder.append(String.format(" (%02d) ", cube.getValue()));
         }
+        return builder.toString();
     }
 
 }
