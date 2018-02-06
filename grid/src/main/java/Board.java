@@ -36,7 +36,7 @@ public class Board {
                 board.add(index, cube);
                 horizontalColumn.add(cube);
             }
-            horizontalColumns.add(new CubeList(horizontalColumn));
+            horizontalColumns.add(new CubeList(CubeList.Layout.HORIZONTAL, horizontalColumn));
         }
         for (int horizontal = 0; horizontal < 9; horizontal++) {
             List<Cube> verticalRow = new ArrayList<Cube>();
@@ -45,7 +45,7 @@ public class Board {
                 Cube cube = board.get(index);
                 verticalRow.add(cube);
             }
-            verticalRows.add(new CubeList(verticalRow));
+            verticalRows.add(new CubeList(CubeList.Layout.VERTICAL, verticalRow));
         }
         int[] indexes = new int[]{0, 3, 6, 27, 30, 33, 54, 57, 60};
         for (int index : indexes) {
@@ -61,7 +61,7 @@ public class Board {
             for (int horizontal = 0; horizontal < 3; horizontal++) {
                 orderedSquare.add(board.get(index + horizontal));
             }
-            orderedSquaresOfCubes.add(new CubeList(orderedSquare));
+            orderedSquaresOfCubes.add(new CubeList(CubeList.Layout.RECTANGLE, orderedSquare));
         }
     }
 
@@ -73,26 +73,26 @@ public class Board {
             builder.append(cube.getValue());
             builder.append(" ");
         }
-        builder.append("\n\n");
+        builder.append("\n");
 
         builder.append("Horizontal columns:\n");
         for (CubeList horizontalColumn : horizontalColumns) {
             builder.append(horizontalColumn.dump());
-            builder.append("\n\n");
+            builder.append("\n");
         }
         builder.append("\n");
 
         builder.append("Vertical rows:\n");
         for (CubeList verticalRow : verticalRows) {
             builder.append(verticalRow.dump());
-            builder.append("\n\n");
+            builder.append("\n");
         }
         builder.append("\n");
 
         builder.append("Ordered squares:\n");
         for (CubeList orderedSquare : orderedSquaresOfCubes) {
             builder.append(orderedSquare.dump());
-            builder.append("\n\n");
+            builder.append("\n");
         }
         builder.append("\n");
 
