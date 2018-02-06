@@ -14,7 +14,7 @@
 #Speech
 * "Cube focus"
 * "Board focus"
-* "This board/cube row/column" " has: (1..5)" / "has no: (1-4)"
+* "This board/cube cubeList/column" " has: (1..5)" / "has no: (1-4)"
 
 #Colors
 * black / white

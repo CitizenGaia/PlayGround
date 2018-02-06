@@ -15,7 +15,6 @@ public class CVSUtils {
     private boolean loaded = false;
 
     private String details = "";
-    private Pattern pattern;
 
     public boolean load(File cvsFile) {
         try {
@@ -57,7 +56,7 @@ public class CVSUtils {
     private boolean extractData(Scanner scanner) throws IllegalFormatException {
         extracted = new ArrayList<String>();
         Matcher matcher;
-        pattern = Pattern.compile(regexp);
+        Pattern pattern = Pattern.compile(regexp);
 
         boolean isValid = true;
         while (scanner.hasNext()) {

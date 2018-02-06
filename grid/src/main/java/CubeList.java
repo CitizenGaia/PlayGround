@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Row {
+public class CubeList {
 
     private List<Cube> row;
 
-    public Row() {
-        row = new ArrayList<Cube>(9);
+    public CubeList() {
+        row = new ArrayList<Cube>();
     }
 
     public int size() {
@@ -21,7 +21,7 @@ public class Row {
         return true;
     }
 
-    public Row(List<Cube> cubeList) {
+    public CubeList(List<Cube> cubeList) {
         row = cubeList;
     }
 
