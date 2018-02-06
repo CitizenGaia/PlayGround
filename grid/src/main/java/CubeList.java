@@ -6,7 +6,7 @@ public class CubeList {
     enum Layout {
         HORIZONTAL(9),
         VERTICAL(1),
-        RECTANGLE(3);
+        SQUARED(3);
 
         private int value;
 
@@ -78,4 +78,11 @@ public class CubeList {
         return builder.toString();
     }
 
+    public Layout getLayout() {
+        return layout;
+    }
+
+    public void setLayout(Layout layout) {
+        this.layout = layout;
+    }
 }

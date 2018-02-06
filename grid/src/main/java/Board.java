@@ -61,7 +61,7 @@ public class Board {
             for (int horizontal = 0; horizontal < 3; horizontal++) {
                 orderedSquare.add(board.get(index + horizontal));
             }
-            orderedSquaresOfCubes.add(new CubeList(CubeList.Layout.RECTANGLE, orderedSquare));
+            orderedSquaresOfCubes.add(new CubeList(CubeList.Layout.SQUARED, orderedSquare));
         }
     }
 
