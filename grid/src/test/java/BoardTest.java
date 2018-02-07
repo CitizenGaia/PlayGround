@@ -1,9 +1,12 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class BoardTest {
 
-    private static Map<Integer, Integer> setupData = new HashMap<Integer, Integer>();
+    private final static Logger logger = Logger.getLogger(BoardTest.class.getName());
+
+    private static Map<Integer, Integer> setupData = new HashMap<>();
 
     @org.junit.Before
     public void setup() {
@@ -22,7 +25,7 @@ public class BoardTest {
     @org.junit.Test
     public void dump() {
         Board board = new Board(setupData);
-        System.out.println(board.dump());
+        logger.info(board.dump());
     }
 
 

@@ -1,12 +1,15 @@
 import org.junit.Test;
 
 import java.io.File;
+import java.util.logging.Logger;
 
 import static junit.framework.TestCase.assertTrue;
 
 public class CVSUtilsTest {
 
-    String match = "" +
+    private final static Logger logger = Logger.getLogger(CVSUtilsTest.class.getName());
+
+    private String match = "" +
             "[1][2][3]" + "\n" +
             "[4][5][6]" + "\n" +
             "[7][8][9]" + "\n";
@@ -37,7 +40,7 @@ public class CVSUtilsTest {
         File cvsFile = new File("src/test/resources/csvFileSingleQuote");
         assertTrue("csvFileSingleQuote is fine" , utils.load(cvsFile)) ;
         String dump = utils.dump();
-        System.out.println(dump);
+        logger.info(dump);
         assertTrue("The dumped values are not as expected", match.equals(dump));
     }
 
