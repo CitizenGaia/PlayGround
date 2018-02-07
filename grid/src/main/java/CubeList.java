@@ -19,56 +19,47 @@ public class CubeList {
         }
     }
 
-    private List<Cube> row;
-    private Layout layout = Layout.HORIZONTAL;
+    private List<Cube> list;
+    private Layout layout;
+    private Integer id;
 
-    public CubeList() {
-        new CubeList(Layout.HORIZONTAL);
-    }
-
-    public CubeList(CubeList.Layout layout) {
+    public CubeList(CubeList.Layout layout, Integer id) {
         this.layout = layout;
-        row = new ArrayList<Cube>();
-    }
-
-    public CubeList(List<Cube> cubeList) {
-        new CubeList(Layout.HORIZONTAL, cubeList);
-    }
-
-    public CubeList(CubeList.Layout layout, List<Cube> cubeList) {
-        this.layout = layout;
-        row = cubeList;
+        this.id = id;
+        list = new ArrayList<Cube>();
     }
 
     public int size() {
-        return row.size();
+        return list.size();
     }
 
     public boolean addCube(int index, Cube cube) {
         if (!validate(index, cube)) {
             return false;
         }
-        row.add(index - 1, cube);
+        list.add(index - 1, cube);
         return true;
     }
 
     public List<Integer> getCubeValueList() {
-        List<Integer> values = new ArrayList<Integer>(row.size());
-        for (Cube cube : row) {
+        List<Integer> values = new ArrayList<Integer>(list.size());
+        for (Cube cube : list) {
             values.add(cube.getValue());
         }
         return values;
     }
 
     private boolean validate(int index, Cube cube) {
-        return (cube != null) && (index == (1 + row.size())) && 0 < index && index <= 9;
+        return (cube != null) && (index == (1 + list.size())) && 0 < index && index <= 9;
     }
 
     public String dump() {
         int breakAt = layout.value();
         int cubeNo = 0;
         StringBuilder builder = new StringBuilder();
-        for (Cube cube : row) {
+        builder.append(layout.name() + "\n");
+
+        for (Cube cube : list) {
             builder.append(String.format(" (%02d) ", cube.getValue()));
             if (++cubeNo >= breakAt) {
                 cubeNo = 0;

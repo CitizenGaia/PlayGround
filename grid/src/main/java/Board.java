@@ -24,44 +24,45 @@ public class Board {
     private void load() {
         for (int horizontal = 0; horizontal < 9; horizontal++) {
             Cube cube;
-            List<Cube> horizontalColumn = new ArrayList<Cube>();
-            for (int vertical = 0; vertical < 9; vertical++) {
+            CubeList horizontalColumn = new CubeList(CubeList.Layout.HORIZONTAL, 1 + horizontal);
+            for (int position = 0; position < 9; position++) {
                 cube = new Cube();
-                int index = (9 * horizontal) + vertical;
+                int index = (9 * horizontal) + position;
                 if (setup.containsKey(1 + index)) {
                     cube.setValue(setup.get(1 + index));
                 } else {
                     cube.setValue(-1);
                 }
                 board.add(index, cube);
-                horizontalColumn.add(cube);
+                horizontalColumn.addCube(1 + position, cube);
             }
-            horizontalColumns.add(new CubeList(CubeList.Layout.HORIZONTAL, horizontalColumn));
+            horizontalColumns.add(horizontalColumn);
         }
-        for (int horizontal = 0; horizontal < 9; horizontal++) {
-            List<Cube> verticalRow = new ArrayList<Cube>();
-            for (int vertical = 0; vertical < 9; vertical++) {
-                int index = (9 * vertical) + horizontal;
+        for (int vertical = 0; vertical < 9; vertical++) {
+            CubeList verticalRow = new CubeList(CubeList.Layout.VERTICAL, 1 + vertical);
+            for (int position = 0; position < 9; position++) {
+                int index = (9 * position) + vertical;
                 Cube cube = board.get(index);
-                verticalRow.add(cube);
+                verticalRow.addCube(1 + position, cube);
             }
-            verticalRows.add(new CubeList(CubeList.Layout.VERTICAL, verticalRow));
+            verticalRows.add(verticalRow);
         }
         int[] indexes = new int[]{0, 3, 6, 27, 30, 33, 54, 57, 60};
-        for (int index : indexes) {
-            List<Cube> orderedSquare = new ArrayList<Cube>();
+        for (int index = 0; index < indexes.length; index++) {
+            int position = 0;
+            CubeList orderedSquare = new CubeList(CubeList.Layout.SQUARED, 1 + index);
             for (int horizontal = 0; horizontal < 3; horizontal++) {
-                orderedSquare.add(board.get(index + horizontal));
+                orderedSquare.addCube(1 + position++, board.get(index + horizontal));
             }
             index += 9;
             for (int horizontal = 0; horizontal < 3; horizontal++) {
-                orderedSquare.add(board.get(index + horizontal));
+                orderedSquare.addCube(1 + position++, board.get(index + horizontal));
             }
             index += 9;
             for (int horizontal = 0; horizontal < 3; horizontal++) {
-                orderedSquare.add(board.get(index + horizontal));
+                orderedSquare.addCube(1 + position++, board.get(index + horizontal));
             }
-            orderedSquaresOfCubes.add(new CubeList(CubeList.Layout.SQUARED, orderedSquare));
+            orderedSquaresOfCubes.add(orderedSquare);
         }
     }
 
