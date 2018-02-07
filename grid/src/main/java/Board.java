@@ -5,12 +5,12 @@ import java.util.Map;
 
 public class Board {
 
-    private List<Cube> board = new ArrayList<Cube>();
-    private List<CubeList> verticalRows = new ArrayList<CubeList>();
-    private List<CubeList> horizontalColumns = new ArrayList<CubeList>();
-    private List<CubeList> orderedSquaresOfCubes = new ArrayList<CubeList>();
+    private List<Cube> board = new ArrayList<>();
+    private List<CubeList> verticalRows = new ArrayList<>();
+    private List<CubeList> horizontalColumns = new ArrayList<>();
+    private List<CubeList> orderedSquaresOfCubes = new ArrayList<>();
 
-    private Map<Integer, Integer> setup = new HashMap<Integer, Integer>();
+    private Map<Integer, Integer> setup = new HashMap<>();
 
     public Board() {
         load();
