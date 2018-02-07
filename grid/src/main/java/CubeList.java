@@ -23,14 +23,10 @@ public class CubeList {
     private Layout layout;
     private Integer id;
 
-    public CubeList(CubeList.Layout layout, Integer id) {
+    CubeList(Layout layout, Integer id) {
         this.layout = layout;
         this.id = id;
-        list = new ArrayList<Cube>();
-    }
-
-    public int size() {
-        return list.size();
+        list = new ArrayList<>();
     }
 
     public boolean addCube(int index, Cube cube) {
@@ -43,7 +39,7 @@ public class CubeList {
     }
 
     public List<Integer> getCubeValueList() {
-        List<Integer> values = new ArrayList<Integer>(list.size());
+        List<Integer> values = new ArrayList<>(list.size());
         for (Cube cube : list) {
             values.add(cube.getValue());
         }
@@ -58,7 +54,7 @@ public class CubeList {
         int breakAt = layout.value();
         int cubeNo = 0;
         StringBuilder builder = new StringBuilder();
-        builder.append(layout.name() + "\n");
+        builder.append(layout.name()).append("\n");
 
         for (Cube cube : list) {
             builder.append(String.format(" (%02d) ", cube.getValue()));
@@ -74,7 +70,8 @@ public class CubeList {
         return layout;
     }
 
-    public void setLayout(Layout layout) {
-        this.layout = layout;
+    public Integer getId() {
+        return id;
     }
+
 }
