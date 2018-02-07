@@ -48,7 +48,7 @@ public class Board {
             verticalRows.add(verticalRow);
         }
         int[] indexes = new int[]{0, 3, 6, 27, 30, 33, 54, 57, 60};
-        for (int index = 0; index < indexes.length; index++) {
+        for (int index : indexes) {
             int position = 0;
             CubeList orderedSquare = new CubeList(CubeList.Layout.SQUARED, 1 + index);
             for (int horizontal = 0; horizontal < 3; horizontal++) {

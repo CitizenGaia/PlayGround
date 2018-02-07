@@ -1,6 +1,9 @@
+import java.util.HashMap;
+import java.util.Map;
 
 public class Cube {
 
+    private Map<CubeList.Layout, CubeList> registrations = new HashMap<CubeList.Layout, CubeList>();
     private int value;
 
     public Cube() {
@@ -19,7 +22,21 @@ public class Cube {
         return true;
     }
 
-    public boolean validate(int value) {
+    public void register(CubeList cubeList) {
+        if (!registrations.containsKey(cubeList.getLayout())) {
+            registrations.put(cubeList.getLayout(), cubeList);
+        }
+    }
+
+    public CubeList getRegister(CubeList.Layout layout) {
+        if (registrations.containsKey(layout)) {
+            return registrations.get(layout);
+        }
+        return null;
+    }
+
+
+    public static boolean validate(int value) {
         return (-1 == value) || (0 < value && value <= 9);
     }
 }

@@ -38,6 +38,7 @@ public class CubeList {
             return false;
         }
         list.add(index - 1, cube);
+        cube.register(this);
         return true;
     }
 
