@@ -1,10 +1,7 @@
 import org.junit.Test;
 
 import java.io.*;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static junit.framework.TestCase.assertTrue;
@@ -66,7 +63,7 @@ public class CVSUtilsTest {
         CVSUtils utils = new CVSUtils();
         String string = null;
         try {
-            string = new String ( Files.readAllBytes(Paths.get(".", "src/test/resources/csvFile")));
+            string = new String(Files.readAllBytes(Paths.get(".", "src/test/resources/csvFile")));
         } catch (IOException e) {
             fail("IOException should not occur");
         }
