@@ -2,6 +2,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import static junit.framework.TestCase.assertTrue;
+
 public class BoardTest {
 
     private final static Logger logger = Logger.getLogger(BoardTest.class.getName());
@@ -11,22 +13,21 @@ public class BoardTest {
     @org.junit.Before
     public void setup() {
         int horizontal = 0;
-        for (int key = 0; key<81; key++){
-            if (horizontal<9) {
+        for (int key = 0; key < 81; key++) {
+            if (horizontal < 9) {
                 horizontal++;
             } else {
                 horizontal = 1;
             }
-            System.out.println("Key:" + (1 + key)+ " value:" + (horizontal));
+            logger.info("Key:" + (1 + key) + " value:" + (horizontal));
             setupData.put((1 + key), horizontal);
         }
     }
 
     @org.junit.Test
-    public void dump() {
+    public void missingIsZero() {
         Board board = new Board(setupData);
-        logger.info(board.dump());
+        assertTrue("All 81 values have been set", 0==board.missing());
     }
-
 
 }

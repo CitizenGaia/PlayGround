@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Board {
 
@@ -28,11 +29,7 @@ public class Board {
             for (int position = 0; position < 9; position++) {
                 cube = new Cube();
                 int index = (9 * horizontal) + position;
-                if (setup.containsKey(1 + index)) {
-                    cube.setValue(setup.get(1 + index));
-                } else {
-                    cube.setValue(-1);
-                }
+                cube.setValue(setup.getOrDefault(1 + index, -1));
                 board.add(index, cube);
                 horizontalColumn.addCube(1 + position, cube);
             }
@@ -64,6 +61,14 @@ public class Board {
             }
             orderedSquaresOfCubes.add(orderedSquare);
         }
+    }
+
+    /**
+     * Missing squares
+     * @return number of squares on the board without a value.
+     */
+    public int missing() {
+        return board.stream().filter(t -> t.getValue() == -1).collect(Collectors.toList()).size();
     }
 
     public String dump() {

@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-// TODO: Concider fix buggy code from www.mkyong.com
+// TODO: Consider fix buggy code from www.mkyong.com
 public class CVSUtils {
 
     private char separator = ',';
@@ -85,9 +85,8 @@ public class CVSUtils {
 
     public String dump() {
         StringBuilder builder = new java.lang.StringBuilder();
-        Iterator<String> lines = extracted.iterator();
-        while (lines.hasNext()) {
-            List<String> valuesInLine = parseLine(lines.next());
+        for (String anExtracted : extracted) {
+            List<String> valuesInLine = parseLine(anExtracted);
             for (String value : valuesInLine) {
                 builder.append(value);
             }
