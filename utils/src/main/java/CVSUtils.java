@@ -41,11 +41,25 @@ public class CVSUtils {
 
     /**
      * Load CSV formatted 'file' as InputStream
-     * @param inputstream based on the 'file', 'String', byte array a.o.
+     * @param inputstream based on the CSV formatted 'file'
      * @return true if succes
      */
     public boolean load(InputStream inputstream) {
         Scanner scanner = new Scanner(inputstream, "UTF-8");
+        loaded = extractData(scanner);
+        if (!loaded) {
+            logger.warning((String.format("Line:\n%s\n does'nt match RegExp:%s", details, regexp)));
+        }
+        return loaded;
+    }
+
+    /**
+     * Load CSV formatted 'file' as InputStream
+     * @param string based on the CSV formatted 'file'
+     * @return true if succes
+     */
+    public boolean load(String string) {
+        Scanner scanner = new Scanner(string);
         loaded = extractData(scanner);
         if (!loaded) {
             logger.warning((String.format("Line:\n%s\n does'nt match RegExp:%s", details, regexp)));
