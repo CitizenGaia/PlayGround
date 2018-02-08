@@ -18,7 +18,7 @@ public class CVSUtilsTest {
     public void loadDefaultExampleFile() {
         CVSUtils utils = new CVSUtils();
         File cvsFile = new File("src/test/resources/csvFile");
-        assertTrue("cvsFile is fine", utils.load(cvsFile));
+        assertTrue("cvsFile will not load fine", utils.load(cvsFile));
         String dump = utils.dump();
         assertTrue("The dumped values are not as expected", match.equals(dump));
     }
@@ -28,7 +28,7 @@ public class CVSUtilsTest {
         CVSUtils utils = new CVSUtils();
         utils.setSeparator(';');
         File cvsFile = new File("src/test/resources/csvFileSemicolon");
-        assertTrue("csvFileSemicolon is fine", utils.load(cvsFile));
+        assertTrue("csvFileSemicolon will not load fine", utils.load(cvsFile));
         String dump = utils.dump();
         assertTrue("The dumped values are not as expected", match.equals(dump));
     }
@@ -38,7 +38,7 @@ public class CVSUtilsTest {
         CVSUtils utils = new CVSUtils();
         utils.setQuote('\'');
         File cvsFile = new File("src/test/resources/csvFileSingleQuote");
-        assertTrue("csvFileSingleQuote is fine", utils.load(cvsFile));
+        assertTrue("csvFileSingleQuote will not load fine", utils.load(cvsFile));
         String dump = utils.dump();
         assertTrue("The dumped values are not as expected", match.equals(dump));
     }
@@ -53,7 +53,7 @@ public class CVSUtilsTest {
         } catch (FileNotFoundException e) {
             fail("FileNotFoundException should not occur");
         }
-        assertTrue("cvsFile as inputStream is fine", utils.load(inputStream));
+        assertTrue("cvsFile as inputStream will not load fine", utils.load(inputStream));
         String dump = utils.dump();
         assertTrue("The dumped values are not as expected", match.equals(dump));
     }
@@ -67,7 +67,7 @@ public class CVSUtilsTest {
         } catch (IOException e) {
             fail("IOException should not occur");
         }
-        assertTrue("cvsFile as string is fine", utils.load(string));
+        assertTrue("cvsFile as string will not load fine", utils.load(string));
         String dump = utils.dump();
         assertTrue("The dumped values are not as expected", match.equals(dump));
     }
