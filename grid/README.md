@@ -1,4 +1,6 @@
-#SUDOKO
+#SUDOKO - Classic
+
+![SUDOKO Classic](images/sudokuClassic.png) 
 
 ##Game Engine
 Game-engineer

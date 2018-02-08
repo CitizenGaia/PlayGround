@@ -8,10 +8,20 @@ public class BoardTest {
 
     private final static Logger logger = Logger.getLogger(BoardTest.class.getName());
 
-    private static Map<Integer, Integer> setupData = new HashMap<>();
+    @org.junit.Test
+    public void boardHas_0_EmptySquares() {
+        Board board = new Board(setupFullBoard());
+        assertTrue("All 81 values have been set", 0==board.missing());
+    }
 
-    @org.junit.Before
-    public void setup() {
+    @org.junit.Test
+    public void boardHas_81_EmptySquares() {
+        Board board = new Board();
+        assertTrue("None values have been set", 81==board.missing());
+    }
+
+    private Map<Integer, Integer> setupFullBoard() {
+        Map<Integer, Integer> setupData = new HashMap<>();
         int horizontal = 0;
         for (int key = 0; key < 81; key++) {
             if (horizontal < 9) {
@@ -22,12 +32,7 @@ public class BoardTest {
             logger.info("Key:" + (1 + key) + " value:" + (horizontal));
             setupData.put((1 + key), horizontal);
         }
-    }
-
-    @org.junit.Test
-    public void missingIsZero() {
-        Board board = new Board(setupData);
-        assertTrue("All 81 values have been set", 0==board.missing());
+        return setupData;
     }
 
 }
