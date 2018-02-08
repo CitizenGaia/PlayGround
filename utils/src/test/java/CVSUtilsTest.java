@@ -1,8 +1,12 @@
 import org.junit.Test;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 import static junit.framework.TestCase.assertTrue;
+import static junit.framework.TestCase.fail;
 
 public class CVSUtilsTest {
 
@@ -39,4 +43,20 @@ public class CVSUtilsTest {
         String dump = utils.dump();
         assertTrue("The dumped values are not as expected", match.equals(dump));
     }
+
+    @Test
+    public void loadDefaultExampleFileAsInputStream() {
+        CVSUtils utils = new CVSUtils();
+        File cvsFile = new File("src/test/resources/csvFile");
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream(cvsFile);
+        } catch (FileNotFoundException e) {
+            fail("FileNotFoundException should not occur");
+        }
+        assertTrue("cvsFile as inputStream is fine", utils.load(inputStream));
+        String dump = utils.dump();
+        assertTrue("The dumped values are not as expected", match.equals(dump));
+    }
+
 }

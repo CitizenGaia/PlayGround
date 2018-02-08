@@ -1,11 +1,16 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.*;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 // TODO: Consider fix buggy code from www.mkyong.com
 public class CVSUtils {
+
+    private final static Logger logger = Logger.getLogger(CVSUtils.class.getName());
 
     private char separator = ',';
     private char quote = '"';
@@ -16,15 +21,34 @@ public class CVSUtils {
 
     private String details = "";
 
+    /**
+     * Load CSV formatted 'file'
+     * @param cvsFile the CVS fomatted File
+     * @return true if succes
+     */
     public boolean load(File cvsFile) {
         try {
-            Scanner scanner = new Scanner(cvsFile);
+            Scanner scanner = new Scanner(cvsFile, "UTF-8");
             loaded = extractData(scanner);
             if (!loaded) {
                 System.out.println((String.format("Line:\n%s\n does'nt match RegExp:%s", details, regexp)));
             }
         } catch (FileNotFoundException e) {
-            System.out.println("File not found" + e.getMessage());
+            logger.warning("File not found" + e.getMessage());
+        }
+        return loaded;
+    }
+
+    /**
+     * Load CSV formatted 'file' as InputStream
+     * @param inputstream based on the 'file', 'String', byte array a.o.
+     * @return true if succes
+     */
+    public boolean load(InputStream inputstream) {
+        Scanner scanner = new Scanner(inputstream, "UTF-8");
+        loaded = extractData(scanner);
+        if (!loaded) {
+            logger.warning((String.format("Line:\n%s\n does'nt match RegExp:%s", details, regexp)));
         }
         return loaded;
     }
