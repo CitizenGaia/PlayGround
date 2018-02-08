@@ -38,12 +38,13 @@ Be able to choose colors or welLknown symbols
 
 Complexity
 ```
-Be able to categorize complexity from number of possible values from start, number of possible board solutions.
-Even offer a help mode
+Be able to categorize complexity from number of possible values from start, number of possible 
+board solutions. Even offer a help mode
 ```
 
 Reuse of board-layout
 ```
-Be able to reuse boards in order to create new ones by combining techniques like using 90 degree (turning the board), 
-number replacement (replace 1 thru 9 into random e.g. 178354269) and flipping the board upside down - or a combination of the later.
+Be able to reuse boards in order to create new ones by combining techniques like using 
+90 degree (turning the board), number replacement (replace 1 thru 9 into random e.g. 178354269) 
+and flipping the board upside down - or a combination of the later.
 ```
