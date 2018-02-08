@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-// TODO: Fix bugs in this code from www.mkyong.com
+// TODO: Concider fix buggy code from www.mkyong.com
 public class CVSUtils {
 
     private char separator = ',';

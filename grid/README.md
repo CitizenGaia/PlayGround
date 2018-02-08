@@ -15,6 +15,7 @@ Board-manager
 ```
 Logic to handle all logic to assistants and engineers.
 ```
+
 Rule-assistant
 ```
 Logic to obey rules and serve explanations in text and speech.  
