@@ -31,7 +31,7 @@ Be able to share my game for opponents to use.
 
 ##Board Layout
 ```
-Be able tc choose colors or welknown symbols
+Be able tO choose colors or welLknown symbols
 ```
 
 ##Complexity
