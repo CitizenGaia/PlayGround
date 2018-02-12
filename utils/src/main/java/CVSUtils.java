@@ -17,6 +17,7 @@ public class CVSUtils {
     private String regexp = "^(\\[[1-9]\\]){3}(\\n)?$";
 
     private List<String> extracted;
+    private List<List<String>> extractedData;
     private boolean loaded = false;
 
     private String details = "";
@@ -31,7 +32,7 @@ public class CVSUtils {
             Scanner scanner = new Scanner(cvsFile, "UTF-8");
             loaded = extractData(scanner);
             if (!loaded) {
-                System.out.println((String.format("Line:\n%s\n does'nt match RegExp:%s", details, regexp)));
+                logger.warning((String.format("Line:\n%s\n does'nt match RegExp:%s", details, regexp)));
             }
         } catch (FileNotFoundException e) {
             logger.warning("File not found" + e.getMessage());
@@ -92,7 +93,8 @@ public class CVSUtils {
     }
 
     private boolean extractData(Scanner scanner) throws IllegalFormatException {
-        extracted = new ArrayList<String>();
+        extracted = new ArrayList<>();
+        extractedData = new ArrayList<>();
         Matcher matcher;
         Pattern pattern = Pattern.compile(regexp);
 
@@ -113,12 +115,21 @@ public class CVSUtils {
                 isValid = false;
                 details = builder.toString();
             } else {
-                System.out.print(matcher.group(0));
+                logger.info(matcher.group(0));
             }
+            extractedData.add(parsedLine);
             extracted.add(builder.toString());
         }
         scanner.close();
         return isValid;
+    }
+
+    public List<List<String>> getExtractedData() {
+        return extractedData;
+    }
+
+    public List<String> getExtracted() {
+        return extracted;
     }
 
     public String dump() {
@@ -138,7 +149,7 @@ public class CVSUtils {
     }
 
     private List<String> parseLine(String cvsLine, char separators, char customQuote) {
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
         //if empty, return!
         if (cvsLine == null || cvsLine.length()==0) {
             return result;

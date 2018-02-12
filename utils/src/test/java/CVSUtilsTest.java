@@ -3,16 +3,22 @@ import org.junit.Test;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 import static junit.framework.TestCase.assertTrue;
 import static junit.framework.TestCase.fail;
 
 public class CVSUtilsTest {
 
+    private final static String EINS = "[1][2][3]";
+    private final static String ZWEI = "[4][5][6]";
+    private final static String DREI = "[7][8][9]";
+    private final static String LF = "\n";
+
     private String match = "" +
-            "[1][2][3]" + "\n" +
-            "[4][5][6]" + "\n" +
-            "[7][8][9]" + "\n";
+            EINS + LF +
+            ZWEI + LF +
+            DREI + LF;
 
     @Test
     public void loadDefaultExampleFile() {
@@ -70,6 +76,11 @@ public class CVSUtilsTest {
         assertTrue("cvsFile as string will not load fine", utils.load(string));
         String dump = utils.dump();
         assertTrue("The dumped values are not as expected", match.equals(dump));
+
+        List<String> extracted = utils.getExtracted();
+        assertTrue("1.st entry doesn't match", extracted.get(0).equals(EINS+LF));
+        assertTrue("2.nd entry doesn't match", extracted.get(1).equals(ZWEI+LF));
+        assertTrue("3.rd entry doesn't match", extracted.get(2).equals(DREI+LF));
     }
 
 }
