@@ -1,9 +1,11 @@
+package dk.lejengnaver.sudoko;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class Cube {
 
-    private Map<CubeList.Layout, CubeList> registrations = new HashMap<CubeList.Layout, CubeList>();
+    private Map<CubeList.Layout, CubeList> registrations = new HashMap<>();
     private int value;
 
     public Cube() {

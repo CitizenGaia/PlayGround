@@ -12,7 +12,7 @@ Help-assistant
 Logic to place symbols on the board, one by one, in order to show that algoritms are complete. 
 ```
 
-Board-manager
+dk.lejengnaver.sudoko.Board-manager
 ```
 Logic to handle all logic to assistants and engineers.
 ```
@@ -31,7 +31,7 @@ Be able to share my game for opponents to use.
 * Recorded/Online from real play, Computer simulation
 * Same board, shadow moves on component
 
-Board Layout
+dk.lejengnaver.sudoko.Board Layout
 ```
 Be able to choose colors or welLknown symbols
 ```

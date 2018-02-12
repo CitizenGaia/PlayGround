@@ -1,3 +1,7 @@
+package dk.lejengnaver.sudoko;
+
+import dk.lejengnaver.sudoko.validation.ValueValidator;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +30,7 @@ public class BoardMapper {
      *
      * @param listOfValuesInLine formatted as 'values to the board'
      * @param format             (SQUAREBASED or BOARDBASED)
-     * @return Map<Integer   ,       Integer> that return a 'board based format' that contains
+     * @return Map<Integer       ,               Integer> that return a 'board based format' that contains
      * Key: The cube number of the board [1..81]
      * Value: The value of [1-9] for the cube, -1 is default implying left empty
      * No matching Key implies that the cube has no value e.g. -1 when board is loaded
@@ -57,14 +61,14 @@ public class BoardMapper {
     }
 
     private Integer toBoardIndex(Integer square, Integer cube) {
-        int leftSideSiblings[] = {0,0,1,2,0,1,2,0,1,2};
+        int leftSideSiblings[] = {0, 0, 1, 2, 0, 1, 2, 0, 1, 2};
         // Calculate number of horizontal line of squares of three above current square,
         // which represent three horizontal lines of nine cubes.
-        int _squaresAboveCurrentSquare = Math.floorDiv((square-1),3);
+        int _squaresAboveCurrentSquare = Math.floorDiv((square - 1), 3);
         //
         int cubeLinesAboveCurrentSquare = 3 * _squaresAboveCurrentSquare;
         // Calculate the number of horizontal lines of cubes above the current cube but within the current square.
-        int cubeLinesAboveCurrentCube = Math.floorDiv((cube-1),3);
+        int cubeLinesAboveCurrentCube = Math.floorDiv((cube - 1), 3);
         // Calculate squares on the left side of current square as each of those represent
         // three horizontal cubes.
         int _squaresOnTheLeftSideOfCurrentSquare = leftSideSiblings[square];
@@ -72,8 +76,8 @@ public class BoardMapper {
         // Calculate cubes on the left side of current cube within same square.
         int cubesOnTheLeftSideOfCurrentCube = leftSideSiblings[cube];
 
-        int cubesAbove =  9 * (cubeLinesAboveCurrentSquare + cubeLinesAboveCurrentCube);
-        int cubesOnLeftSide =  cubesOnTheLeftSideOfCurrentSquare + cubesOnTheLeftSideOfCurrentCube;
+        int cubesAbove = 9 * (cubeLinesAboveCurrentSquare + cubeLinesAboveCurrentCube);
+        int cubesOnLeftSide = cubesOnTheLeftSideOfCurrentSquare + cubesOnTheLeftSideOfCurrentCube;
         // Sum cubes above and of the left side PLUS the cubes itself an index are given
         return 1 + cubesAbove + cubesOnLeftSide;
     }

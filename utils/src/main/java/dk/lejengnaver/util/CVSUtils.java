@@ -1,20 +1,20 @@
+package dk.lejengnaver.util;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.nio.charset.Charset;
 import java.util.*;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-// TODO: Consider fix buggy code from www.mkyong.com
+// TODO: refactor code
 public class CVSUtils {
 
     private final static Logger logger = Logger.getLogger(CVSUtils.class.getName());
 
     private char separator = ',';
     private char quote = '"';
-    private String regexp = "^(\\[[1-9]\\]){3}(\\n)?$";
 
     private List<String> extracted;
     private List<List<String>> extractedData;
@@ -27,10 +27,10 @@ public class CVSUtils {
      * @param cvsFile the CVS fomatted File
      * @return true if succes
      */
-    public boolean load(File cvsFile) {
+    public boolean load(File cvsFile, String regexp) {
         try {
             Scanner scanner = new Scanner(cvsFile, "UTF-8");
-            loaded = extractData(scanner);
+            loaded = extractData(scanner, regexp);
             if (!loaded) {
                 logger.warning((String.format("Line:\n%s\n does'nt match RegExp:%s", details, regexp)));
             }
@@ -45,9 +45,9 @@ public class CVSUtils {
      * @param inputstream based on the CSV formatted 'file'
      * @return true if succes
      */
-    public boolean load(InputStream inputstream) {
+    public boolean load(InputStream inputstream, String regexp) {
         Scanner scanner = new Scanner(inputstream, "UTF-8");
-        loaded = extractData(scanner);
+        loaded = extractData(scanner, regexp);
         if (!loaded) {
             logger.warning((String.format("Line:\n%s\n does'nt match RegExp:%s", details, regexp)));
         }
@@ -59,9 +59,9 @@ public class CVSUtils {
      * @param string based on the CSV formatted 'file'
      * @return true if succes
      */
-    public boolean load(String string) {
+    public boolean load(String string, String regexp) {
         Scanner scanner = new Scanner(string);
-        loaded = extractData(scanner);
+        loaded = extractData(scanner, regexp);
         if (!loaded) {
             logger.warning((String.format("Line:\n%s\n does'nt match RegExp:%s", details, regexp)));
         }
@@ -84,15 +84,7 @@ public class CVSUtils {
         this.quote = quote;
     }
 
-    public String getRegexp() {
-        return regexp;
-    }
-
-    public void setRegexp(String regexp) {
-        this.regexp = regexp;
-    }
-
-    private boolean extractData(Scanner scanner) throws IllegalFormatException {
+    private boolean extractData(Scanner scanner, String regexp) throws IllegalFormatException {
         extracted = new ArrayList<>();
         extractedData = new ArrayList<>();
         Matcher matcher;

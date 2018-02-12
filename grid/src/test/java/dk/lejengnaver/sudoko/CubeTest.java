@@ -1,3 +1,6 @@
+package dk.lejengnaver.sudoko;
+
+import dk.lejengnaver.sudoko.Cube;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -14,8 +17,7 @@ public class CubeTest {
 
     @Test
     public void setValueAsInitialized() {
-        Cube cube = new Cube();
-        assertTrue("valid integer value [as initialized ~ meaning no value]", cube.validate(-1));
+        assertTrue("valid integer value [as initialized ~ meaning no value]", Cube.validate(-1));
     }
 
     @Test
@@ -45,11 +47,10 @@ public class CubeTest {
 
     @Test
     public void validateWithValidInteger() {
-        Cube cube = new Cube();
         for (int value = 1; value <= 9; value++) {
-            assertTrue("valid integer value", cube.validate(value));
+            assertTrue("valid integer value", Cube.validate(value));
         }
-        assertTrue("valid integer value [as initialized ~ meaning no value]", cube.validate(-1));
+        assertTrue("valid integer value [as initialized ~ meaning no value]", Cube.validate(-1));
     }
 
     @Test

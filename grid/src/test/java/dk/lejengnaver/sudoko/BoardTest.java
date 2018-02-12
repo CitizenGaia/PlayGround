@@ -1,3 +1,5 @@
+package dk.lejengnaver.sudoko;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;

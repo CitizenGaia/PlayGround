@@ -1,3 +1,5 @@
+package dk.lejengnaver.sudoko;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -73,7 +75,7 @@ public class Board {
 
     public String dump() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Board:\n");
+        builder.append("dk.lejengnaver.sudoko.Board:\n");
         for (Cube cube : board) {
             builder.append(" ");
             builder.append(cube.getValue());

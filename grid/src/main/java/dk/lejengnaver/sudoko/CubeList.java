@@ -1,3 +1,5 @@
+package dk.lejengnaver.sudoko;
+
 import java.util.ArrayList;
 import java.util.List;
 

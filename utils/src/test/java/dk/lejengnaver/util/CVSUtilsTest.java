@@ -1,3 +1,5 @@
+package dk.lejengnaver.util;
+
 import org.junit.Test;
 
 import java.io.*;
@@ -24,7 +26,7 @@ public class CVSUtilsTest {
     public void loadDefaultExampleFile() {
         CVSUtils utils = new CVSUtils();
         File cvsFile = new File("src/test/resources/csvFile");
-        assertTrue("cvsFile will not load fine", utils.load(cvsFile));
+        assertTrue("cvsFile will not load fine", utils.load(cvsFile, GameFormat.REGEXP_SQUAREBASED));
         String dump = utils.dump();
         assertTrue("The dumped values are not as expected", match.equals(dump));
     }
@@ -34,7 +36,7 @@ public class CVSUtilsTest {
         CVSUtils utils = new CVSUtils();
         utils.setSeparator(';');
         File cvsFile = new File("src/test/resources/csvFileSemicolon");
-        assertTrue("csvFileSemicolon will not load fine", utils.load(cvsFile));
+        assertTrue("csvFileSemicolon will not load fine", utils.load(cvsFile, GameFormat.REGEXP_SQUAREBASED));
         String dump = utils.dump();
         assertTrue("The dumped values are not as expected", match.equals(dump));
     }
@@ -44,7 +46,7 @@ public class CVSUtilsTest {
         CVSUtils utils = new CVSUtils();
         utils.setQuote('\'');
         File cvsFile = new File("src/test/resources/csvFileSingleQuote");
-        assertTrue("csvFileSingleQuote will not load fine", utils.load(cvsFile));
+        assertTrue("csvFileSingleQuote will not load fine", utils.load(cvsFile, GameFormat.REGEXP_SQUAREBASED));
         String dump = utils.dump();
         assertTrue("The dumped values are not as expected", match.equals(dump));
     }
@@ -59,7 +61,7 @@ public class CVSUtilsTest {
         } catch (FileNotFoundException e) {
             fail("FileNotFoundException should not occur");
         }
-        assertTrue("cvsFile as inputStream will not load fine", utils.load(inputStream));
+        assertTrue("cvsFile as inputStream will not load fine", utils.load(inputStream, GameFormat.REGEXP_SQUAREBASED));
         String dump = utils.dump();
         assertTrue("The dumped values are not as expected", match.equals(dump));
     }
@@ -73,14 +75,14 @@ public class CVSUtilsTest {
         } catch (IOException e) {
             fail("IOException should not occur");
         }
-        assertTrue("cvsFile as string will not load fine", utils.load(string));
+        assertTrue("cvsFile as string will not load fine", utils.load(string, GameFormat.REGEXP_SQUAREBASED));
         String dump = utils.dump();
         assertTrue("The dumped values are not as expected", match.equals(dump));
 
         List<String> extracted = utils.getExtracted();
-        assertTrue("1.st entry doesn't match", extracted.get(0).equals(EINS+LF));
-        assertTrue("2.nd entry doesn't match", extracted.get(1).equals(ZWEI+LF));
-        assertTrue("3.rd entry doesn't match", extracted.get(2).equals(DREI+LF));
+        assertTrue("1.st entry doesn't match", extracted.get(0).equals(EINS + LF));
+        assertTrue("2.nd entry doesn't match", extracted.get(1).equals(ZWEI + LF));
+        assertTrue("3.rd entry doesn't match", extracted.get(2).equals(DREI + LF));
     }
 
 }

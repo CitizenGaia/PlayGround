@@ -1,3 +1,5 @@
+package dk.lejengnaver.sudoko.validation;
+
 import java.util.logging.Logger;
 
 public class ValueValidator {

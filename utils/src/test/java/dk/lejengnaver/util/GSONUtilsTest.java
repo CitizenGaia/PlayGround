@@ -1,3 +1,6 @@
+package dk.lejengnaver.util;
+
+import dk.lejengnaver.util.GSONUtils;
 import org.junit.Before;
 import org.junit.Test;
 

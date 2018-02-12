@@ -1,3 +1,9 @@
+package dk.lejengnaver.sudoko;
+
+import dk.lejengnaver.sudoko.validation.ValueValidator;
+import dk.lejengnaver.sudoko.validation.ValueValidator;
+import dk.lejengnaver.util.CVSUtils;
+import dk.lejengnaver.util.GameFormat;
 
 import java.util.*;
 import java.util.logging.Logger;
@@ -30,7 +36,7 @@ public class GameEngineer {
         Integer[] shuffledValues = shuffledValues();
 
         CVSUtils utils = new CVSUtils();
-        if (!utils.load(Games.unclassified)) {
+        if (!utils.load(Games.unclassified, GameFormat.REGEXP_SQUAREBASED)) {
             logger.info("Load Raw Game failed");
         }
         List<List<String>> gameOfSquareFormattedLines = utils.getExtractedData();

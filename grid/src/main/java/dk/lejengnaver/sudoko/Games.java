@@ -1,3 +1,5 @@
+package dk.lejengnaver.sudoko;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +9,7 @@ public interface Games {
     String LF = "\n";
 
     /*
-        CSV format SQUARE based: Square, Cube-inside-square, Value.
+        CSV format SQUARE based: Square, dk.lejengnaver.sudoko.Cube-inside-square, Value.
         Order top rightmost is 1,1,<value>
      */
     String unclassified =
