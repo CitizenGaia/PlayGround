@@ -12,6 +12,7 @@ public class BoardMapper {
 
     private final static Logger logger = Logger.getLogger(BoardMapper.class.getName());
 
+    private ValueValidator validator = new ValueValidator();
 
     /**
      * Mapper that requires List of 'values to the board' that accepts two formats:
@@ -55,22 +56,6 @@ public class BoardMapper {
         return map;
     }
 
-    private Integer getInteger(String string) {
-        try {
-            Integer val = Integer.parseInt(string);
-            if ((val >= 1 && val <= 9) || val == -1) {
-                return val;
-            }
-            String msg = String.format("Wrong Value [%s]", string);
-            logger.warning(msg);
-            throw new RuntimeException(msg);
-        } catch (NumberFormatException e) {
-            String msg = String.format("Wrong Format [%s]", string);
-            logger.warning(msg);
-            throw new RuntimeException(msg);
-        }
-    }
-
     private Integer toBoardIndex(Integer square, Integer cube) {
         int leftSideSiblings[] = {0,0,1,2,0,1,2,0,1,2};
         // Calculate number of horizontal line of squares of three above current square,
@@ -91,6 +76,10 @@ public class BoardMapper {
         int cubesOnLeftSide =  cubesOnTheLeftSideOfCurrentSquare + cubesOnTheLeftSideOfCurrentCube;
         // Sum cubes above and of the left side PLUS the cubes itself an index are given
         return 1 + cubesAbove + cubesOnLeftSide;
+    }
+
+    private Integer getInteger(String string) {
+        return validator.getInteger(string);
     }
 
 }
