@@ -13,4 +13,58 @@
         <module>utils</module>
     </modules>
 
+    <properties>
+        <maven-deploy-plugin.version>2.7</maven-deploy-plugin.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <!--
+                http://www.baeldung.com/maven-deploy-nexus
+                Using another deployment plugin in the deploy phase e.g. disable the existing, default mapping: -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven-deploy-plugin.version}</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- http://www.baeldung.com/maven-deploy-nexus -->
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.8</version>
+                <executions>
+                    <execution>
+                        <id>default-deploy</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>nexus</id>
+            <name>Releases</name>
+            <url>http://localhost:8081/repository/maven-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus</id>
+            <name>Snapshot</name>
+            <url>http://localhost:8081/repository/maven-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <!--
+    https://maven.apache.org/settings.html
+    The Maven install: ${maven.home}/conf/settings.xml
+    A user’s install: ${user.home}/.m2/settings.xml
+    -->
+
 </project>
